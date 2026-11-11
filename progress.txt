@@ -1,0 +1,45 @@
+Day 1:
+
+	Purchase the necessary hardware: 
+		- ICM42688P IMU (Aliexrpess)
+		- ESP32 S3 N16 R8 with an OV5640 camera (HEstore)
+
+	Download the ESP-IDF:
+		- Download from the official page:
+			# Install the Espressif signing key
+			sudo install -m 0755 -d /etc/apt/keyrings
+			sudo curl -fsSL https://dl.espressif.com/dl/eim/eim.gpg -o /etc/apt/keyrings/eim.gpg
+			sudo chmod 0644 /etc/apt/keyrings/eim.gpg
+
+			# Add the Espressif APT repository (deb822 with signed-by)
+			sudo curl -fsSL https://dl.espressif.com/dl/eim/eim.sources -o /etc/apt/sources.list.d/espressif.sources
+
+			# Update package lists
+			sudo apt update
+
+			# Install CLI only
+			sudo apt install eim-cli
+			
+			eim install
+			
+			source /home/tomi/.espressif/tools/activate_idf_v6.1.sh
+
+			
+			idf.py create-project esp-vislam
+			
+			cd esp-vislam && idf.py set-target esp32s3
+			
+			idf.py menuconfig (set PSRAM and Flash memory size )
+
+			idf.py build
+
+
+	A good tool to check the ESP capacity: https://thelastoutpostworkshop.github.io/ESPConnect/
+	What's next?
+		- Flash the hardware
+			idf.py -p /dev/ttyACM0 flash monitor
+			
+		- First demo on the ESP
+		
+		- Code in the PC, and know how the gaussian splatting works with IMU data.
+		
